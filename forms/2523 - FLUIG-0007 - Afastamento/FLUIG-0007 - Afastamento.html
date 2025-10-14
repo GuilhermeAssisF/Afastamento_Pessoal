@@ -70,9 +70,8 @@
                   <div class="col-md-6">
                      <div class="form-group">
                         <div class="input-group">
-                           <span class="input-group-addon">Função:</span> <input type="text"
-                              readonly="readonly" class="form-control" name="cpFuncaoSolicitante"
-                              id="cpFuncaoSolicitante">
+                           <span class="input-group-addon">Função:</span> <input type="text" readonly="readonly"
+                              class="form-control" name="cpFuncaoSolicitante" id="cpFuncaoSolicitante">
                         </div>
                      </div>
                   </div>
@@ -153,7 +152,7 @@
          </div>
          <!-- reabertura -->
 
-         
+
 
          <div class="panel panel-default">
             <div class="panel-heading">
@@ -244,8 +243,8 @@
 
                   <div class="col-md-6">
                      <div class="form-group">
-                           <label>Código Situação</label>
-                           <input type="text" name="cpCodSituacao" id="cpCodSituacao" class="form-control" readonly />
+                        <label>Código Situação</label>
+                        <input type="text" name="cpCodSituacao" id="cpCodSituacao" class="form-control" readonly />
                      </div>
                   </div>
 
@@ -289,7 +288,7 @@
                   Histórico de Afastamentos
                </h3>
             </div>
-         </div>   
+         </div>
          <!-- FIM - PANEL BODY - HISTORICO DE AFASTAMENTOS -->
 
          <!-- DADOS DO AFASTAMENTO -->
@@ -301,7 +300,6 @@
                </h3>
             </div>
             <div class="panel-body container">
-               <!-- DADOS DO COLABORADOR -->
                <div class="row">
                   <div class="col-md-4">
                      <div class="form-group">
@@ -343,6 +341,38 @@
                </div>
 
                <div class="row">
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label class="labelField">Tipo Afastamento</label>
+                        <div class="input-group">
+                           <input type="hidden" name="cpCodTipoAfastamento" id="cpCodTipoAfastamento">
+                           <input type="text" name="cpTipoAfastamentoRM" id="cpTipoAfastamentoRM" class="form-control"
+                              readonly obrigatorio />
+                           <div class="input-group-btn">
+                              <button class="btn btn-info" id="btnTipoAfastamento" type="button">
+                                 <span class="fluigicon fluigicon-search"></span>
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label class="labelField">Motivo Afastamento</label>
+                        <div class="input-group">
+                           <input type="hidden" name="cpCodMotivoAfastamento" id="cpCodMotivoAfastamento">
+                           <input type="text" name="cpMotivoAfastamento" id="cpMotivoAfastamento" class="form-control"
+                              readonly obrigatorio />
+                           <div class="input-group-btn">
+                              <button class="btn btn-info" id="btnMotivoAfastamento" type="button">
+                                 <span class="fluigicon fluigicon-search"></span>
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
                   <div class="col-md-12">
                      <div class="form-group">
                         <label>Observações</label>
@@ -350,7 +380,6 @@
                      </div>
                   </div>
                </div>
-
             </div>
          </div>
          <!-- DADOS DA SOLICITACAO -->

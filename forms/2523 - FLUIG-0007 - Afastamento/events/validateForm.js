@@ -49,6 +49,10 @@ function validateForm(form){
 	validaVazio('MatriculaCod', 'Matrícula');
 	validaVazio('Gestor', 'Gestor');
 	validaVazio('cpTipoAfastamento', 'Tipo Afastamento'); 
+
+	//Novos campos
+	validaVazio('cpTipoAfastamentoRM', 'Tipo de Afastamento');
+	validaVazio('cpMotivoAfastamento', 'Motivo do Afastamento');
 	
 	//Indice novo horário
 	if (form.getValue("CpNovoHorario") !="" && form.getValue("CpIndiceCodHorario")==""){
