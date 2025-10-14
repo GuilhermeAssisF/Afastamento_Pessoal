@@ -1,403 +1,399 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <title>Afastamento de Pessoal</title>
-      <link type="text/css"
-         href="/portal/resources/style-guide/css/fluig-style-guide.min.css"
-         rel="stylesheet" />
-      <link type="text/css" href="estilo.css" rel="stylesheet" />
-      <link type="text/css" href="jquery-ui.css" rel="stylesheet">
-      <link type="text/css" href="jquery-ui.theme.css" rel="stylesheet">
-      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	  <link rel="stylesheet" href="/resources/demos/style.css">
-      <style>
-         .atividade-titulo {
+
+<head>
+   <title>Afastamento de Pessoal</title>
+   <link type="text/css" href="/portal/resources/style-guide/css/fluig-style-guide.min.css" rel="stylesheet" />
+   <link type="text/css" href="estilo.css" rel="stylesheet" />
+   <link type="text/css" href="jquery-ui.css" rel="stylesheet">
+   <link type="text/css" href="jquery-ui.theme.css" rel="stylesheet">
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+   <link rel="stylesheet" href="/resources/demos/style.css">
+   <style>
+      .atividade-titulo {
          cursor: pointer;
-         }
-         .ui-datepicker-trigger {
+      }
+
+      .ui-datepicker-trigger {
          display: none;
-         }
-         #ID_LINK_MANUAL {
+      }
+
+      #ID_LINK_MANUAL {
          color: #5bc0de !important;
-         }
-      </style>
-      <meta charset="utf8">
-   </head>
-   <body>
-      <div class="fluig-style-guide">
-         <form name="form" role="form">
-            <!-- SOLICITACAO DE FERIAS -->
-            <!-- DADOS DO SOLICITANTE -->
-            <div class="panel panel-default">
-               <div class="panel-heading">
-                  <h3 class="panel-title">
-                     <span class="fluigicon fluigicon-user fluigicon-lg"></span>
-                     &nbsp;Dados do solicitante
-                  </h3>
-               </div>
-               <div class="panel-body container">
-                  <div class="row">
-                     <div class="col-md-6">
-                        <div class="form-group">
-                           <div class="input-group">
-                              <span class="input-group-addon">N.Solicita&ccedil;&atilde;o:</span>
-                              <input type="text" readonly="readonly" class="form-control"
-                                 name="cpNumeroSolicitacao" id="cpNumeroSolicitacao">
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-md-6">
-                        <div class="form-group">
-                           <div class="input-group">
-                              <span class="input-group-addon">Data Abertura:</span> <input
-                                 type="text" readonly="readonly" class="form-control"
-                                 name="cpDataAbertura" id="cpDataAbertura">
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="row">
-                     <div class="col-md-6">
-                        <div class="form-group">
-                           <div class="input-group">
-                              <span class="input-group-addon">Solicitante:</span> <input
-                                 type="text" readonly="readonly" class="form-control"
-                                 name="cpNomeSolicitante" id="cpNomeSolicitante">
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-md-6">
-                        <div class="form-group">
-                           <div class="input-group">
-                              <span class="input-group-addon">Fun&ccedil;&atilde;o:</span> <input
-                                 type="text" readonly="readonly" class="form-control"
-                                 name="cpFuncaoSolicitante" id="cpFuncaoSolicitante">
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="row">
-                     <div class="col-md-6">
-                        <div class="form-group">
-                           <div class="input-group">
-                              <span class="input-group-addon">Empresa:</span> <input
-                                 type="text" readonly="readonly" class="form-control"
-                                 name="cpEmpresaSolicitante" id="cpEmpresaSolicitante">
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-md-6">
-                        <div class="form-group">
-                           <div class="input-group">
-                              <span class="input-group-addon">Departam./Obra:</span> <input
-                                 type="text" readonly="readonly" class="form-control"
-                                 name="cpDepartamentoObraSolicitante"
-                                 id="cpDepartamentoObraSolicitante">
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="row">
-                     <div class="col-md-6">
-                        <div class="form-group">
-                           <div class="input-group">
-                              <span class="input-group-addon">Email:</span> <input
-                                 type="text" readonly="readonly" class="form-control"
-                                 name="cpEmailSolicitante" id="cpEmailSolicitante">
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-md-6">
-                        <div class="form-group">
-                           <div class="input-group">
-                              <span class="input-group-addon">Estado:</span> <input
-                                 type="text" readonly="readonly" class="form-control"
-                                 name="cpEstadoSolicitante" id="cpEstadoSolicitante">
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <!-- FIM - PANEL BODY - DADOS DO SOLICITANTE -->
-            </div>
-            <!-- Reabertura -->
-            <input type="hidden" name="cpLoginFluig" id="cpLoginFluig"> <input
-				type="hidden" name="cpMatriculaSolicitante"
-				id="cpMatriculaSolicitante"> <input type="hidden"
-				name="cpSolicitanteColigada" id="cpSolicitanteColigada">
+      }
+   </style>
+   <meta charset="utf8">
+</head>
 
-			<div class="panel panel-default" id="divReabertura">
-				<div class="panel-heading">
-					<h3 class="panel-title">
-						<span class="fluigicon fluigicon-questions fluigicon-lg"></span>
-						&nbsp;Corre&ccedil;&atilde;o da Solicita&ccedil;&atilde;o
-					</h3>
-				</div>
-				<div class="panel-body container">
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label class="labelField">Aprova&ccedil;&atilde;o</label> <select
-									class="form-control" name="cpReaberturaChamado"
-									id="cpReaberturaChamado" aprovacao obrigatorio>
-									<option value=" ">Selecione...</option>
-									<option value="1" data-status="success">Reenviar
-										Chamado</option>
-									<option value="2" data-status="success">Cancelar</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="form-group">
-								<label>Parecer</label>
-								<textarea rows="3" class="form-control"
-									name="cpParecerReabertura" id="cpParecerReabertura" parecer></textarea>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- reabertura -->
-			
-			    <!-- DADOS DAS MOVIMENTACOES -->
-            <div class="panel panel-default">
-               <div class="panel-heading">
-                  <h3 class="panel-title">
-                     <span class="fluigicon  fluigicon-pointer-right fluigicon-sm"></span>
-                     &nbsp;Dados do Afastamento
-                  </h3>
-               </div>
-               <div class="panel-body container">
-                  <!-- DADOS DO COLABORADOR -->
-                    <div class="row">
-                      <div class="col-md-4">
-                      <div class="form-group">
-                      <label class="labelField">Ação</label> 
-                      <select name="cpTipoAfastamento" id="cpTipoAfastamento"
-                       class="form-control">
-                       <option value="">Selecione...</option>
-                       <option value="1">Inicío/Fim Afastamento(Historico)</option>
-                       <option value="2">Inicío Afastamento</option>
-                       <option value="3">Retorno Afastamento</option>
-                       </select>
-                       </div>
-                       </div>
-                    <div class="col-md-4 inicio">
-                        <div class="form-group">
-                           <label>Data de Início</label>
-                           <div class="input-group">
-                              <input type="text" name="DataInicio" id="DataInicio" 
-                               class="form-control" readonly/>
-                              <span class="input-group-btn botao" id="addDtInicio">
-                              <button type="button" class="btn btn-info">
-                              <span class="fluigicon fluigicon-calendar"></span>
-                              </button>
-                              </span>
-                           </div>
-                        </div>
-                     	</div>
-                     	<div class="col-md-4 Fim">
-                        <div class="form-group">
-                           <label>Data de Fim</label>
-                           <div class="input-group">
-                              <input type="text" name="DataFim" id="DataFim" 
-                               class="form-control" readonly/>
-                              <span class="input-group-btn botao" id="addDtFim">
-                              <button type="button" class="btn btn-info">
-                              <span class="fluigicon fluigicon-calendar"></span>
-                              </button>
-                              </span>
-                           </div>
-                        </div>
-                     	</div>
-                     	</div>
-                     	
-                     		<div class="row">
-								<div class="col-md-12">
-									<div class="form-group">
-										<label>Observações</label>
-										<textarea name="cpParecerObs" id="cpParecerObs" class="form-control" rows="3"></textarea>
-									</div>
-								</div>
-							</div>
-            
-            </div>
-            </div>
-			     
-            <div class="panel panel-default">
-               <div class="panel-heading">
-                  <h3 class="panel-title">
-                     <span class="fluigicon  fluigicon-pointer-right fluigicon-sm"></span>
-                     &nbsp;Dados da Solicita&ccedil;&atilde;o
-                  </h3>
-               </div>
-               <div class="panel-body container">
-                  <!-- DADOS DO COLABORADOR -->
-                  <h4>
-                     <span class="fluigicon  fluigicon-pointer-right fluigicon-sm"></span>Dados
-                     do Colaborador
-                  </h4>
-                  <div class="row">
-                      <div class="col-md-6">
-                      <input type="hidden" name="CodColigada" id="CodColigada"/>
-                        <div class="form-group">
-                            <label>Empresa</label>
-                           <div class="input-group">
-                              <input type="text" name="Empresa" id="Empresa"
-                                 class="form-control clearPosCentroCusto" readonly />
-                              <div class="input-group-btn btnZoom" id="addEmpresa">
-                                 <button class="btn btn-info">
-                                 <span class="fluigicon fluigicon-search"></span>
-                                 </button>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     
-                      <input type="hidden" name="CodCentroCC" id="CodCentroCC"/>
-                     <div class="col-md-6">
-								<div class="form-group">
-									<label>Dpto/Obra</label>
-									<input type="text" class="form-control clearPosCentroCusto" name="CentroCC" id="CentroCC" readonly>
-								</div>
-					</div>
-                     </div>
-                        <div class="row">
-           		   <div class="col-md-6">
-                        <div class="form-group">
-                           <label>Município da Seção</label>
-                              <input type="text" name="cpMuniSec" id="cpMuniSec"
-                                 class="form-control clearPosCentroCusto" readonly />
-                              </div>
-                        </div>
-                        <div class="col-md-6">
-                        <div class="form-group">
-                           <label>Estado da Seção</label>
-                              <input type="text" name="cpEstSecao" id="cpEstSecao"
-                                 class="form-control clearPosCentroCusto" readonly />
-                              </div>
-                        </div>
-                        </div>
-                      <div class="row">
-                     <div class="col-md-6">
-                        <div class="form-group">
-                              <label>Nome do Colaborador</label>
-                           <div class="input-group">
-                              <input type="text" name="NomeColaborador" id="NomeColaborador"
-                                 class="form-control clearPosCentroCusto" readonly />
-                              <div class="input-group-btn btnZoom" id="addNomCol">
-                                 <button class="btn btn-info">
-                                 <span class="fluigicon fluigicon-search"></span>
-                                 </button>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                        <div class="col-md-6">
-                        <div class="form-group">
-                           <label>Data da Admiss&atilde;o</label>
-                              <input type="text" name="DatadaAdmissao" id="DatadaAdmissao"
-                                 class="form-control clearPosCentroCusto" readonly />
-                              </div>
-                        </div>
-                     </div>
-                     <div class="row">
-                      
-                       <div class="col-md-6">
-                        <div class="form-group"> 
-                           <label>Matr&iacute;cula</label>
-                              <input type="text" name="MatriculaCod" id="MatriculaCod"
-                                 class="form-control clearPosCentroCusto" readonly />
-                           </div>
-                        </div>
-                       
-                        <div class="col-md-6">
-                        <div class="form-group">
-                           <label>Gestor</label>
-                              <input type="text" name="Gestor" id="Gestor"
-                                 class="form-control clearPosCentroCusto" readonly />
-                              </div>
-                        </div>
-                  </div>
-                  
-                  
-                  	  <input type="hidden" id="TxtChapa" name="TxtChapa">
-					  <input type="hidden" id="CodPessoa" name="CodPessoa">
-					  <input type="hidden" id="TxtNomeCol" name="TxtNomeCol">
-					  <input type="hidden" id="DtLimitFer" name="DtLimitFer">
-					  <input type="hidden" id="txtCodSecaoOri" name="txtCodSecaoOri">
-					  <input type="hidden" id="txtSecOrig" name="txtSecOrig">
-					  <input type="hidden" id="txtDtAdm" name="txtDtAdm">
-					  <input type="hidden" id="txtMembCipaCod" name="txtMembCipaCod">
-					  <input type="hidden" id="CodTipo" name="CodTipo">
-					  <input type="hidden" id="CodCategoria" name="CodCategoria">
-					  <input type="hidden" id="txtSalOrigem" name="txtSalOrigem">  
-					  <input type="hidden" id="TEMPRAZOCONTR" name="TEMPRAZOCONTR">
-					  <input type="hidden" id="FIMPRAZOCONTR" name="FIMPRAZOCONTR">
-					  <input type="hidden" id="NROFICHAREG" name="NROFICHAREG"> 
-					  <input type="hidden" id="CODRECEBIMENTO" name="CODRECEBIMENTO">  
-					  <input type="hidden" id="IndiceAtual" name="IndiceAtual">  
-					  <input type="hidden" id="cpCodNovaColigada" name="cpCodNovaColigada">  
-					  
-                </div>
-            </div>
-            
-            
-            
-               
+<body>
+   <div class="fluig-style-guide">
+      <form name="form" role="form">
+         <!-- SOLICITACAO DE FERIAS -->
 
-            <!-- DADOS DA SOLICITACAO -->
-  
-            <!-- Etapas do processo -->
-            <div class="panel panel-default">
-               <div class="panel-heading">
-                  <h3 class="panel-title">
-                     <span class="fluigicon fluigicon-questions fluigicon-lg"></span>
-                     Etapas do processo
-                  </h3>
+         <!-- DADOS DO SOLICITANTE -->
+         <div class="panel panel-default">
+            <div class="panel-heading">
+               <h3 class="panel-title">
+                  <span class="fluigicon fluigicon-user fluigicon-lg"></span>
+                  Dados do solicitante
+               </h3>
+            </div>
+            <div class="panel-body container">
+               <div class="row">
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <div class="input-group">
+                           <span class="input-group-addon">N.Solicitação:</span>
+                           <input type="text" readonly="readonly" class="form-control" name="cpNumeroSolicitacao"
+                              id="cpNumeroSolicitacao">
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <div class="input-group">
+                           <span class="input-group-addon">Data Abertura:</span> <input type="text" readonly="readonly"
+                              class="form-control" name="cpDataAbertura" id="cpDataAbertura">
+                        </div>
+                     </div>
+                  </div>
                </div>
-               <div class="panel-body">
-                  <input type="hidden" name="codGestorOrigem" id="codGestorOrigem" />
-                  <div class="panel-group">
-                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                           <div class="panel-title collapse-icon atividade-titulo"
-                              data-toggle="collapse" data-target="#panelAtividade_106">
-                             Analista BPO 
+               <div class="row">
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <div class="input-group">
+                           <span class="input-group-addon">Solicitante:</span> <input type="text" readonly="readonly"
+                              class="form-control" name="cpNomeSolicitante" id="cpNomeSolicitante">
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <div class="input-group">
+                           <span class="input-group-addon">Função:</span> <input type="text"
+                              readonly="readonly" class="form-control" name="cpFuncaoSolicitante"
+                              id="cpFuncaoSolicitante">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <div class="input-group">
+                           <span class="input-group-addon">Empresa:</span> <input type="text" readonly="readonly"
+                              class="form-control" name="cpEmpresaSolicitante" id="cpEmpresaSolicitante">
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <div class="input-group">
+                           <span class="input-group-addon">Departam./Obra:</span> <input type="text" readonly="readonly"
+                              class="form-control" name="cpDepartamentoObraSolicitante"
+                              id="cpDepartamentoObraSolicitante">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <div class="input-group">
+                           <span class="input-group-addon">Email:</span> <input type="text" readonly="readonly"
+                              class="form-control" name="cpEmailSolicitante" id="cpEmailSolicitante">
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <div class="input-group">
+                           <span class="input-group-addon">Estado:</span> <input type="text" readonly="readonly"
+                              class="form-control" name="cpEstadoSolicitante" id="cpEstadoSolicitante">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- FIM - PANEL BODY - DADOS DO SOLICITANTE -->
+         </div>
+
+         <!-- Reabertura -->
+         <input type="hidden" name="cpLoginFluig" id="cpLoginFluig"> <input type="hidden" name="cpMatriculaSolicitante"
+            id="cpMatriculaSolicitante"> <input type="hidden" name="cpSolicitanteColigada" id="cpSolicitanteColigada">
+
+         <div class="panel panel-default" id="divReabertura">
+            <div class="panel-heading">
+               <h3 class="panel-title">
+                  <span class="fluigicon fluigicon-questions fluigicon-lg"></span>
+                  &nbsp;Corrção da Solicitação
+               </h3>
+            </div>
+            <div class="panel-body container">
+               <div class="row">
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label class="labelField">Aprovação</label> <select class="form-control"
+                           name="cpReaberturaChamado" id="cpReaberturaChamado" aprovacao obrigatorio>
+                           <option value=" ">Selecione...</option>
+                           <option value="1" data-status="success">Reenviar Chamado</option>
+                           <option value="2" data-status="success">Cancelar</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="col-md-12">
+                     <div class="form-group">
+                        <label>Parecer</label>
+                        <textarea rows="3" class="form-control" name="cpParecerReabertura" id="cpParecerReabertura"
+                           parecer></textarea>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- reabertura -->
+
+         
+
+         <div class="panel panel-default">
+            <div class="panel-heading">
+               <h3 class="panel-title">
+                  <span class="fluigicon  fluigicon-pointer-right fluigicon-sm"></span>
+                  Dados da Solicitação
+               </h3>
+            </div>
+            <div class="panel-body container">
+               <!-- DADOS DO COLABORADOR -->
+               <h4>
+                  <span class="fluigicon  fluigicon-pointer-right fluigicon-sm"></span>Dados do Colaborador
+               </h4>
+               <div class="row">
+                  <div class="col-md-6">
+                     <input type="hidden" name="CodColigada" id="CodColigada" />
+                     <div class="form-group">
+                        <label>Empresa</label>
+                        <div class="input-group">
+                           <input type="text" name="Empresa" id="Empresa" class="form-control clearPosCentroCusto"
+                              readonly />
+                           <div class="input-group-btn btnZoom" id="addEmpresa">
+                              <button class="btn btn-info">
+                                 <span class="fluigicon fluigicon-search"></span>
+                              </button>
                            </div>
                         </div>
-                        <div id="panelAtividade_106" class="panel-collapse collapse">
-                           <div class="panel-body">
-                              <div class="row">
-                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                       <label class="labelField">Aprovador</label> <input
-                                          type="text" name="cpRespGestor" id="cpRespGestor"
-                                          class="form-control" readonly />
-                                    </div>
-                                 </div>
-                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                       <label class="labelField">Aprova&ccedil;&atilde;o</label> 
-                                       <select
-                                          name="cpAprovacaoGestor" id="cpAprovacaoGestor"
-                                          class="form-control" aprovacao obrigatorio>
-                                          <option value="">Selecione...</option>
-                                          <option value="1">Aprovado</option>
-                                          <option value="2">Reprovado - Com Pendências</option>
-                                          <option value="3">Reprovado</option>
-                                       </select>
-                                    </div>
+                     </div>
+                  </div>
+
+                  <input type="hidden" name="CodCentroCC" id="CodCentroCC" />
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label>Dpto/Obra</label>
+                        <input type="text" class="form-control clearPosCentroCusto" name="CentroCC" id="CentroCC"
+                           readonly>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label>Município da Seção</label>
+                        <input type="text" name="cpMuniSec" id="cpMuniSec" class="form-control clearPosCentroCusto"
+                           readonly />
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label>Estado da Seção</label>
+                        <input type="text" name="cpEstSecao" id="cpEstSecao" class="form-control clearPosCentroCusto"
+                           readonly />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label>Nome do Colaborador</label>
+                        <div class="input-group">
+                           <input type="text" name="NomeColaborador" id="NomeColaborador"
+                              class="form-control clearPosCentroCusto" readonly />
+                           <div class="input-group-btn btnZoom" id="addNomCol">
+                              <button class="btn btn-info">
+                                 <span class="fluigicon fluigicon-search"></span>
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label>Data da Admiss&atilde;o</label>
+                        <input type="text" name="DatadaAdmissao" id="DatadaAdmissao"
+                           class="form-control clearPosCentroCusto" readonly />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label>Matr&iacute;cula</label>
+                        <input type="text" name="MatriculaCod" id="MatriculaCod"
+                           class="form-control clearPosCentroCusto" readonly />
+                     </div>
+                  </div>
+
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label>Gestor</label>
+                        <input type="text" name="Gestor" id="Gestor" class="form-control clearPosCentroCusto"
+                           readonly />
+                     </div>
+                  </div>
+               </div>
+
+
+               <input type="hidden" id="TxtChapa" name="TxtChapa">
+               <input type="hidden" id="CodPessoa" name="CodPessoa">
+               <input type="hidden" id="TxtNomeCol" name="TxtNomeCol">
+               <input type="hidden" id="DtLimitFer" name="DtLimitFer">
+               <input type="hidden" id="txtCodSecaoOri" name="txtCodSecaoOri">
+               <input type="hidden" id="txtSecOrig" name="txtSecOrig">
+               <input type="hidden" id="txtDtAdm" name="txtDtAdm">
+               <input type="hidden" id="txtMembCipaCod" name="txtMembCipaCod">
+               <input type="hidden" id="CodTipo" name="CodTipo">
+               <input type="hidden" id="CodCategoria" name="CodCategoria">
+               <input type="hidden" id="txtSalOrigem" name="txtSalOrigem">
+               <input type="hidden" id="TEMPRAZOCONTR" name="TEMPRAZOCONTR">
+               <input type="hidden" id="FIMPRAZOCONTR" name="FIMPRAZOCONTR">
+               <input type="hidden" id="NROFICHAREG" name="NROFICHAREG">
+               <input type="hidden" id="CODRECEBIMENTO" name="CODRECEBIMENTO">
+               <input type="hidden" id="IndiceAtual" name="IndiceAtual">
+               <input type="hidden" id="cpCodNovaColigada" name="cpCodNovaColigada">
+
+            </div>
+         </div>
+         <!-- FIM - PANEL BODY - DADOS DO COLABORADOR -->
+
+         <!-- HISTORICO DE AFASTAMENTOS -->
+         <div class="panel panel-default">
+            <div class="panel-heading">
+               <h3 class="panel-title">
+                  <span class="fluigicon  fluigicon-pointer-right fluigicon-sm"></span>
+                  Histórico de Afastamentos
+               </h3>
+            </div>
+         </div>   
+         <!-- FIM - PANEL BODY - HISTORICO DE AFASTAMENTOS -->
+
+         <!-- DADOS DO AFASTAMENTO -->
+         <div class="panel panel-default">
+            <div class="panel-heading">
+               <h3 class="panel-title">
+                  <span class="fluigicon  fluigicon-pointer-right fluigicon-sm"></span>
+                  Dados do Afastamento
+               </h3>
+            </div>
+            <div class="panel-body container">
+               <!-- DADOS DO COLABORADOR -->
+               <div class="row">
+                  <div class="col-md-4">
+                     <div class="form-group">
+                        <label class="labelField">Ação</label>
+                        <select name="cpTipoAfastamento" id="cpTipoAfastamento" class="form-control">
+                           <option value="">Selecione...</option>
+                           <option value="1">Inicío/Fim Afastamento(Historico)</option>
+                           <option value="2">Inicío Afastamento</option>
+                           <option value="3">Retorno Afastamento</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="col-md-4 inicio">
+                     <div class="form-group">
+                        <label>Data de Início</label>
+                        <div class="input-group">
+                           <input type="text" name="DataInicio" id="DataInicio" class="form-control" readonly />
+                           <span class="input-group-btn botao" id="addDtInicio">
+                              <button type="button" class="btn btn-info">
+                                 <span class="fluigicon fluigicon-calendar"></span>
+                              </button>
+                           </span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-4 Fim">
+                     <div class="form-group">
+                        <label>Data de Fim</label>
+                        <div class="input-group">
+                           <input type="text" name="DataFim" id="DataFim" class="form-control" readonly />
+                           <span class="input-group-btn botao" id="addDtFim">
+                              <button type="button" class="btn btn-info">
+                                 <span class="fluigicon fluigicon-calendar"></span>
+                              </button>
+                           </span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="row">
+                  <div class="col-md-12">
+                     <div class="form-group">
+                        <label>Observações</label>
+                        <textarea name="cpParecerObs" id="cpParecerObs" class="form-control" rows="3"></textarea>
+                     </div>
+                  </div>
+               </div>
+
+            </div>
+         </div>
+         <!-- DADOS DA SOLICITACAO -->
+
+         <!-- Etapas do processo -->
+         <div class="panel panel-default">
+            <div class="panel-heading">
+               <h3 class="panel-title">
+                  <span class="fluigicon fluigicon-questions fluigicon-lg"></span>
+                  Etapas do processo
+               </h3>
+            </div>
+            <div class="panel-body">
+               <input type="hidden" name="codGestorOrigem" id="codGestorOrigem" />
+               <div class="panel-group">
+                  <div class="panel panel-default">
+                     <div class="panel-heading">
+                        <div class="panel-title collapse-icon atividade-titulo" data-toggle="collapse"
+                           data-target="#panelAtividade_106">
+                           Analista BPO
+                        </div>
+                     </div>
+                     <div id="panelAtividade_106" class="panel-collapse collapse">
+                        <div class="panel-body">
+                           <div class="row">
+                              <div class="col-md-6">
+                                 <div class="form-group">
+                                    <label class="labelField">Aprovador</label> <input type="text" name="cpRespGestor"
+                                       id="cpRespGestor" class="form-control" readonly />
                                  </div>
                               </div>
-                              <div class="row">
-                                 <div class="col-md-12">
-                                    <div class="form-group">
-                                       <label class="labelField">Parecer</label>
-                                       <textarea class="form-control" rows="3"
-                                          name="cpParecercol" id="cpParecercol"
-                                          parecer></textarea>
-                                    </div>
+                              <div class="col-md-6">
+                                 <div class="form-group">
+                                    <label class="labelField">Aprova&ccedil;&atilde;o</label>
+                                    <select name="cpAprovacaoGestor" id="cpAprovacaoGestor" class="form-control"
+                                       aprovacao obrigatorio>
+                                       <option value="">Selecione...</option>
+                                       <option value="1">Aprovado</option>
+                                       <option value="2">Reprovado - Com Pendências</option>
+                                       <option value="3">Reprovado</option>
+                                    </select>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <div class="form-group">
+                                    <label class="labelField">Parecer</label>
+                                    <textarea class="form-control" rows="3" name="cpParecercol" id="cpParecercol"
+                                       parecer></textarea>
                                  </div>
                               </div>
                            </div>
@@ -406,24 +402,27 @@
                   </div>
                </div>
             </div>
-            <!-- Etapas do processo -->
-         </form>
-      </div>
-	<!-- scrpts essenciais - DEVE CONTER EM TODOS OS FORMS -->
-		<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
-		<script type="text/javascript" src="/webdesk/vcXMLRPC.js" charset="utf-8"></script>
-		<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
-		<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
-		<script type="text/javascript" src="jquery.mask.min.js"></script>
-		<script type="text/javascript" src="jquery.timepicker.min.js"></script>
-		<script type="text/javascript" src="/portal/resources/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
-		<script type="text/javascript" src="zoom.js" charset="utf-8"></script>
-		<script type="text/javascript" src="compartilhados.js" charset="utf-8"></script>
-		<!-- scrpts essenciais - DEVE CONTER EM TODOS OS FORMS -->
-		<script type="text/javascript" src="view.js"></script>
-		<script type="text/javascript" src="dal.js"></script>
-		<script type="text/javascript" src="jquery.maskMoney.min.js"></script>
-		<script type="text/javascript" src="jquery-ui-Data.js"></script>
-		<script type="text/javascript" src="jquery-uiData2.js"></script>
-   </body>
+         </div>
+         <!-- Etapas do processo -->
+      </form>
+   </div>
+   <!-- scrpts essenciais - DEVE CONTER EM TODOS OS FORMS -->
+   <script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+   <script type="text/javascript" src="/webdesk/vcXMLRPC.js" charset="utf-8"></script>
+   <script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+   <script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+   <script type="text/javascript" src="jquery.mask.min.js"></script>
+   <script type="text/javascript" src="jquery.timepicker.min.js"></script>
+   <script type="text/javascript" src="/portal/resources/style-guide/js/fluig-style-guide.min.js"
+      charset="utf-8"></script>
+   <script type="text/javascript" src="zoom.js" charset="utf-8"></script>
+   <script type="text/javascript" src="compartilhados.js" charset="utf-8"></script>
+   <!-- scrpts essenciais - DEVE CONTER EM TODOS OS FORMS -->
+   <script type="text/javascript" src="view.js"></script>
+   <script type="text/javascript" src="dal.js"></script>
+   <script type="text/javascript" src="jquery.maskMoney.min.js"></script>
+   <script type="text/javascript" src="jquery-ui-Data.js"></script>
+   <script type="text/javascript" src="jquery-uiData2.js"></script>
+</body>
+
 </html>
