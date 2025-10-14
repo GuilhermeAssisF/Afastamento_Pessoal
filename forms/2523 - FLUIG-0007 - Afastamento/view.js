@@ -238,7 +238,7 @@ function ZoomBuscaCol() {
 		$("#DescHoraAtual").val(retorno[21]);
 		$("#CodHorAtual").val(retorno[22]);
 		$("#IndiceAtual").val(retorno[25]);
-		 
+		$("#cpCodSituacao").val(retorno[6]);
 	}  
 
 	return ZoomCol;

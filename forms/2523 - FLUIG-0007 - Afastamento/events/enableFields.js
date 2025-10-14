@@ -20,6 +20,7 @@ function enableFields(form){
 		{"campo" : "NomeColaborador","atividade" : "0,1,41"},
 		{"campo" : "CargoCol","atividade" : "0,1,41"},
 		{"campo" : "MatriculaCod","atividade" : "0,1,41"},
+		{"campo" : "cpCodSituacao","atividade" : "0,1,41"}, // Linha adicionada para Código da Situação
 		{"campo" : "Gestor","atividade" : "0,1,41"},
 		{"campo" : "cpTipoAfastamento","atividade" : "0,1,41"},
 		{"campo" : "DataInicio","atividade" : "0,1,41"},
