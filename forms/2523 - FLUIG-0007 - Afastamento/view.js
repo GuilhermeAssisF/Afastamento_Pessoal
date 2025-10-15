@@ -186,8 +186,8 @@ var criaDatepickers = function () {
 }
 
 var TpAfastamento = function (Tipo) {
-    // Habilita todos os campos por padrão
-    $("#cpTipoAfastamentoRM, #btnTipoAfastamento, #cpMotivoAfastamento, #btnMotivoAfastamento").prop("disabled", false);
+    // Garante que a seção de tipo/motivo seja exibida por padrão
+    $(".tipo-motivo-wrapper").show();
 
     if (Tipo == "1") { // Início/Fim
         $(".inicio").show();
@@ -198,13 +198,13 @@ var TpAfastamento = function (Tipo) {
     } else if (Tipo == "3") { // Retorno
         $(".Fim").show();
         $(".inicio").hide();
-        // Desabilita os campos específicos para "Retorno Afastamento"
-        $("#cpTipoAfastamentoRM, #btnTipoAfastamento, #cpMotivoAfastamento, #btnMotivoAfastamento").prop("disabled", true);
+        // Esconde a seção de tipo/motivo para "Retorno Afastamento"
+        $(".tipo-motivo-wrapper").hide();
     } else { // Nenhum selecionado
         $(".Fim").hide();
         $(".inicio").hide();
     }
-}
+};
 
 var buscaCentroCusto = function () {
 
