@@ -23,18 +23,8 @@ $(document).ready(function () {
 
 		//Empresa e Dpto	
 		$("#addEmpresa").click(function () {
-			var TpSol = $("#cpTipoAfastamento").val();
-			if (TpSol == "") {
-				window.parent.FLUIGC.message.alert({
-					message: "Antes de selecionar o departamento,preencha o Tipo de Afastamento!",
-					title: 'Erro',
-					label: 'Ok'
-				});
-			} else {
-
-				var zoomSecao = buscaCentroCusto();
-				zoomSecao.Abrir();
-			}
+			var zoomSecao = buscaCentroCusto();
+			zoomSecao.Abrir();
 		});
 		//Colaborador
 		$("#addNomCol").click(function () {
