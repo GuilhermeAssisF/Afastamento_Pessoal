@@ -26,21 +26,15 @@ $(document).ready(function () {
 			var zoomSecao = buscaCentroCusto();
 			zoomSecao.Abrir();
 		});
+
 		//Colaborador
 		$("#addNomCol").click(function () {
 			var TpSol = $("#cpTipoAfastamento").val();
-			if (TpSol == "") {
-				window.parent.FLUIGC.message.alert({
-					message: "Antes de selecionar o colaborador,preencha o Tipo de Afastamento!",
-					title: 'Erro',
-					label: 'Ok'
-				});
-			}
+
 			//fim afastamento - busca somente os afastados 
-			else if (TpSol == "3") {
+			if (TpSol == "3") {
 				var ZoomColAfastados = ZoomBuscaColAfastados();
 				ZoomColAfastados.Abrir();
-
 			}
 			//inicio ou inicio e fim busca os ativos
 			else {
@@ -192,21 +186,24 @@ var criaDatepickers = function () {
 }
 
 var TpAfastamento = function (Tipo) {
-	if (Tipo == "1") {
-		$(".inicio").show();
-		$(".Fim").show();
-	} else if (Tipo == "2") {
-		$(".inicio").show();
-		$(".Fim").hide();
-	} else if (Tipo == "3") {
-		$(".Fim").show();
-		$(".inicio").show();
-	} else {
-		$(".Fim").hide();
-		$(".inicio").hide();
-	}
+    // Habilita todos os campos por padrão
+    $("#cpTipoAfastamentoRM, #btnTipoAfastamento, #cpMotivoAfastamento, #btnMotivoAfastamento").prop("disabled", false);
 
-
+    if (Tipo == "1") { // Início/Fim
+        $(".inicio").show();
+        $(".Fim").show();
+    } else if (Tipo == "2") { // Início
+        $(".inicio").show();
+        $(".Fim").hide();
+    } else if (Tipo == "3") { // Retorno
+        $(".Fim").show();
+        $(".inicio").hide();
+        // Desabilita os campos específicos para "Retorno Afastamento"
+        $("#cpTipoAfastamentoRM, #btnTipoAfastamento, #cpMotivoAfastamento, #btnMotivoAfastamento").prop("disabled", true);
+    } else { // Nenhum selecionado
+        $(".Fim").hide();
+        $(".inicio").hide();
+    }
 }
 
 var buscaCentroCusto = function () {
