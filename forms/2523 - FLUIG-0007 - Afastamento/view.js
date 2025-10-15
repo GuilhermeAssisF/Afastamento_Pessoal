@@ -97,7 +97,7 @@ $(document).ready(function () {
  */
 function carregarHistoricoAfastamento() {
     var matricula = $("#MatriculaCod").val(); // Pega a matrícula do campo correto
-    var coligada = $("#txtCodcoligada").val(); // Pega a coligada do campo correto
+    var coligada = $("#CodColigada").val(); // CORRIGIDO: Pega a coligada do campo correto
 
     // Se não houver matrícula ou coligada, esconde o painel e para a execução.
     if (!matricula || !coligada) {
@@ -141,7 +141,7 @@ function carregarHistoricoAfastamento() {
             $("#motivoHist___" + indice).val(afastamento.MOTIVO);
             $("#obsHist___" + indice).val(afastamento.OBS);
         }
-        $("#histAfastamentos tbody tr").first().remove();
+        $("#histAfastamentos tbody tr").first().hide(); // Esconde a linha modelo
     } else {
         $("#panelHistoricoAfastamento").hide();
     }
@@ -339,6 +339,8 @@ function ZoomBuscaCol() {
 		$("#CodHorAtual").val(retorno[22]);
 		$("#IndiceAtual").val(retorno[25]);
 		$("#cpCodSituacao").val(retorno[6]);
+
+		carregarHistoricoAfastamento();
 	}
 
 	return ZoomCol;
@@ -419,6 +421,7 @@ function ZoomBuscaColAfastados() {
 		$("#IndiceAtual").val(retorno[25]);
 		$("#DataInicio").val(retorno[26]);
 
+		carregarHistoricoAfastamento(); // Adicionado para carregar o histórico
 	}
 
 	return ZoomColAfastados;
