@@ -281,12 +281,45 @@
          <!-- FIM - PANEL BODY - DADOS DO COLABORADOR -->
 
          <!-- HISTORICO DE AFASTAMENTOS -->
-         <div class="panel panel-default">
+         <div class="panel panel-default" id="panelHistoricoAfastamento">
             <div class="panel-heading">
                <h3 class="panel-title">
-                  <span class="fluigicon  fluigicon-pointer-right fluigicon-sm"></span>
-                  Histórico de Afastamentos
+                  <span class="fluigicon fluigicon-calendar fluigicon-lg"></span>
+                  &nbsp;Histórico de Afastamentos
                </h3>
+            </div>
+            <div class="panel-body">
+               <table class="table table-striped table-bordered" tablename="histAfastamentos" id="histAfastamentos"
+                  noaddbutton="true" nodeletebutton="true">
+                  <thead>
+                     <tr class="table-header">
+                        <th>Empresa</th>
+                        <th>Filial</th>
+                        <th>Chapa</th>
+                        <th>Nome</th>
+                        <th>Tipo Afastamento</th>
+                        <th>Data Início</th>
+                        <th>Data Fim</th>
+                        <th>Motivo</th>
+                        <th>Observação</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td><input type="text" name="empresaHist" id="empresaHist" class="form-control" readonly></td>
+                        <td><input type="text" name="filialHist" id="filialHist" class="form-control" readonly></td>
+                        <td><input type="text" name="chapaHist" id="chapaHist" class="form-control" readonly></td>
+                        <td><input type="text" name="nomeHist" id="nomeHist" class="form-control" readonly></td>
+                        <td><input type="text" name="tipoAfastamentoHist" id="tipoAfastamentoHist" class="form-control"
+                              readonly></td>
+                        <td><input type="text" name="dataInicioHist" id="dataInicioHist" class="form-control" readonly>
+                        </td>
+                        <td><input type="text" name="dataFimHist" id="dataFimHist" class="form-control" readonly></td>
+                        <td><input type="text" name="motivoHist" id="motivoHist" class="form-control" readonly></td>
+                        <td><input type="text" name="obsHist" id="obsHist" class="form-control" readonly></td>
+                     </tr>
+                  </tbody>
+               </table>
             </div>
          </div>
          <!-- FIM - PANEL BODY - HISTORICO DE AFASTAMENTOS -->

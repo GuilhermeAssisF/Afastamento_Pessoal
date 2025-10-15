@@ -88,7 +88,64 @@ $(document).ready(function () {
 
 	}
 
+	// Chama a função para carregar o histórico quando o formulário estiver pronto
+    carregarHistoricoAfastamento();
 });
+
+/**
+ * Função para buscar e exibir o histórico de afastamentos do colaborador.
+ */
+function carregarHistoricoAfastamento() {
+    var matricula = $("#MatriculaCod").val(); // Pega a matrícula do campo correto
+    var coligada = $("#txtCodcoligada").val(); // Pega a coligada do campo correto
+
+    // Se não houver matrícula ou coligada, esconde o painel e para a execução.
+    if (!matricula || !coligada) {
+        $("#panelHistoricoAfastamento").hide();
+        return;
+    }
+
+    // --- DADOS FICTÍCIOS (PARA REMOVER QUANDO TIVER O DATASET REAL) ---
+    var dadosFicticios = {
+        "values": [{
+            "EMPRESA": "Empresa Exemplo 1", "FILIAL": "Filial A", "CHAPA": "12345", "NOME": "Fulano de Tal",
+            "TIPO_AFASTAMENTO": "Férias", "DATA_INICIO": "01/01/2023", "DATA_FIM": "30/01/2023",
+            "MOTIVO": "Férias anuais", "OBS": "N/A"
+        }, {
+            "EMPRESA": "Empresa Exemplo 2", "FILIAL": "Filial B", "CHAPA": "12345", "NOME": "Fulano de Tal",
+            "TIPO_AFASTAMENTO": "Licença Médica", "DATA_INICIO": "15/03/2023", "DATA_FIM": "20/03/2023",
+            "MOTIVO": "Atestado Médico", "OBS": "CID Z00.0"
+        }]
+    };
+    
+    var historico = dadosFicticios.values; 
+
+    // Limpa a tabela antes de adicionar novas linhas
+    $("#histAfastamentos tbody tr:not(:first)").remove();
+    $("#histAfastamentos tbody tr").first().find("input").val("");
+
+    if (historico && historico.length > 0) {
+        $("#panelHistoricoAfastamento").show();
+
+        for (var i = 0; i < historico.length; i++) {
+            var afastamento = historico[i];
+            var indice = wdkAddChild('histAfastamentos');
+
+            $("#empresaHist___" + indice).val(afastamento.EMPRESA);
+            $("#filialHist___" + indice).val(afastamento.FILIAL);
+            $("#chapaHist___" + indice).val(afastamento.CHAPA);
+            $("#nomeHist___" + indice).val(afastamento.NOME);
+            $("#tipoAfastamentoHist___" + indice).val(afastamento.TIPO_AFASTAMENTO);
+            $("#dataInicioHist___" + indice).val(afastamento.DATA_INICIO);
+            $("#dataFimHist___" + indice).val(afastamento.DATA_FIM);
+            $("#motivoHist___" + indice).val(afastamento.MOTIVO);
+            $("#obsHist___" + indice).val(afastamento.OBS);
+        }
+        $("#histAfastamentos tbody tr").first().remove();
+    } else {
+        $("#panelHistoricoAfastamento").hide();
+    }
+}
 
 var criaDatepickers = function () {
 
