@@ -63,8 +63,36 @@ $(document).ready(function () {
 		$("#addDtFim").click(function () {
 			$("#DataFim").datepicker('show');
 		});
+
+		// Validação ao mudar o tipo de afastamento
 		$("#cpTipoAfastamento").change(function () {
 			var Tipo = $("#cpTipoAfastamento").val();
+			var situacao = $("#cpCodSituacao").val();
+
+			// Validação para INÍCIO de afastamento
+			if (Tipo == "2" && situacao != "" && situacao != "A") {
+				FLUIGC.message.alert({
+					message: 'O colaborador não se encontra ativo, não sendo possível realizar o afastamento.',
+					title: 'Atenção!',
+					label: 'OK'
+				}, function () {
+					// Limpa os campos do colaborador para forçar nova seleção
+					$("#NomeColaborador, #DatadaAdmissao, #MatriculaCod, #cpCodSituacao, #Gestor").val("");
+				});
+			}
+
+			// Validação para RETORNO de afastamento
+			if (Tipo == "3" && situacao != "" && (situacao == "A" || situacao == "F" || situacao == "D")) {
+				FLUIGC.message.alert({
+					message: 'O colaborador não se encontra afastado para realizar o retorno de afastamento!',
+					title: 'Atenção!',
+					label: 'OK'
+				}, function () {
+					// Limpa os campos do colaborador para forçar nova seleção
+					$("#NomeColaborador, #DatadaAdmissao, #MatriculaCod, #cpCodSituacao, #Gestor").val("");
+				});
+			}
+
 			TpAfastamento(Tipo);
 		});
 
@@ -79,62 +107,62 @@ $(document).ready(function () {
 	}
 
 	// Chama a função para carregar o histórico quando o formulário estiver pronto
-    carregarHistoricoAfastamento();
+	carregarHistoricoAfastamento();
 });
 
 /**
  * Função para buscar e exibir o histórico de afastamentos do colaborador.
  */
 function carregarHistoricoAfastamento() {
-    var matricula = $("#MatriculaCod").val(); // Pega a matrícula do campo correto
-    var coligada = $("#CodColigada").val(); // CORRIGIDO: Pega a coligada do campo correto
+	var matricula = $("#MatriculaCod").val(); // Pega a matrícula do campo correto
+	var coligada = $("#CodColigada").val(); // CORRIGIDO: Pega a coligada do campo correto
 
-    // Se não houver matrícula ou coligada, esconde o painel e para a execução.
-    if (!matricula || !coligada) {
-        $("#panelHistoricoAfastamento").hide();
-        return;
-    }
+	// Se não houver matrícula ou coligada, esconde o painel e para a execução.
+	if (!matricula || !coligada) {
+		$("#panelHistoricoAfastamento").hide();
+		return;
+	}
 
-    // --- DADOS FICTÍCIOS (PARA REMOVER QUANDO TIVER O DATASET REAL) ---
-    var dadosFicticios = {
-        "values": [{
-            "EMPRESA": "Empresa Exemplo 1", "FILIAL": "Filial A", "CHAPA": "12345", "NOME": "Fulano de Tal",
-            "TIPO_AFASTAMENTO": "Férias", "DATA_INICIO": "01/01/2023", "DATA_FIM": "30/01/2023",
-            "MOTIVO": "Férias anuais", "OBS": "N/A"
-        }, {
-            "EMPRESA": "Empresa Exemplo 2", "FILIAL": "Filial B", "CHAPA": "12345", "NOME": "Fulano de Tal",
-            "TIPO_AFASTAMENTO": "Licença Médica", "DATA_INICIO": "15/03/2023", "DATA_FIM": "20/03/2023",
-            "MOTIVO": "Atestado Médico", "OBS": "CID Z00.0"
-        }]
-    };
-    
-    var historico = dadosFicticios.values; 
+	// --- DADOS FICTÍCIOS (PARA REMOVER QUANDO TIVER O DATASET REAL) ---
+	var dadosFicticios = {
+		"values": [{
+			"EMPRESA": "Empresa Exemplo 1", "FILIAL": "Filial A", "CHAPA": "12345", "NOME": "Fulano de Tal",
+			"TIPO_AFASTAMENTO": "Férias", "DATA_INICIO": "01/01/2023", "DATA_FIM": "30/01/2023",
+			"MOTIVO": "Férias anuais", "OBS": "N/A"
+		}, {
+			"EMPRESA": "Empresa Exemplo 2", "FILIAL": "Filial B", "CHAPA": "12345", "NOME": "Fulano de Tal",
+			"TIPO_AFASTAMENTO": "Licença Médica", "DATA_INICIO": "15/03/2023", "DATA_FIM": "20/03/2023",
+			"MOTIVO": "Atestado Médico", "OBS": "CID Z00.0"
+		}]
+	};
 
-    // Limpa a tabela antes de adicionar novas linhas
-    $("#histAfastamentos tbody tr:not(:first)").remove();
-    $("#histAfastamentos tbody tr").first().find("input").val("");
+	var historico = dadosFicticios.values;
 
-    if (historico && historico.length > 0) {
-        $("#panelHistoricoAfastamento").show();
+	// Limpa a tabela antes de adicionar novas linhas
+	$("#histAfastamentos tbody tr:not(:first)").remove();
+	$("#histAfastamentos tbody tr").first().find("input").val("");
 
-        for (var i = 0; i < historico.length; i++) {
-            var afastamento = historico[i];
-            var indice = wdkAddChild('histAfastamentos');
+	if (historico && historico.length > 0) {
+		$("#panelHistoricoAfastamento").show();
 
-            $("#empresaHist___" + indice).val(afastamento.EMPRESA);
-            $("#filialHist___" + indice).val(afastamento.FILIAL);
-            $("#chapaHist___" + indice).val(afastamento.CHAPA);
-            $("#nomeHist___" + indice).val(afastamento.NOME);
-            $("#tipoAfastamentoHist___" + indice).val(afastamento.TIPO_AFASTAMENTO);
-            $("#dataInicioHist___" + indice).val(afastamento.DATA_INICIO);
-            $("#dataFimHist___" + indice).val(afastamento.DATA_FIM);
-            $("#motivoHist___" + indice).val(afastamento.MOTIVO);
-            $("#obsHist___" + indice).val(afastamento.OBS);
-        }
-        $("#histAfastamentos tbody tr").first().hide(); // Esconde a linha modelo
-    } else {
-        $("#panelHistoricoAfastamento").hide();
-    }
+		for (var i = 0; i < historico.length; i++) {
+			var afastamento = historico[i];
+			var indice = wdkAddChild('histAfastamentos');
+
+			$("#empresaHist___" + indice).val(afastamento.EMPRESA);
+			$("#filialHist___" + indice).val(afastamento.FILIAL);
+			$("#chapaHist___" + indice).val(afastamento.CHAPA);
+			$("#nomeHist___" + indice).val(afastamento.NOME);
+			$("#tipoAfastamentoHist___" + indice).val(afastamento.TIPO_AFASTAMENTO);
+			$("#dataInicioHist___" + indice).val(afastamento.DATA_INICIO);
+			$("#dataFimHist___" + indice).val(afastamento.DATA_FIM);
+			$("#motivoHist___" + indice).val(afastamento.MOTIVO);
+			$("#obsHist___" + indice).val(afastamento.OBS);
+		}
+		$("#histAfastamentos tbody tr").first().hide(); // Esconde a linha modelo
+	} else {
+		$("#panelHistoricoAfastamento").hide();
+	}
 }
 
 var criaDatepickers = function () {
@@ -227,14 +255,14 @@ function buscaTipoAfastamento() {
 	zoom.DataSet = "ds_rm_tipo_afastamento"; // Dataset de Tipos de Afastamento do RM
 	zoom.Titulo = "Buscar Tipo de Afastamento";
 	zoom.Colunas = [
-		{"title" : "Código", "name" : "CODIGO"},
-		{"title" : "Descrição", "name" : "DESCRICAO"}
+		{ "title": "Código", "name": "CODIGO" },
+		{ "title": "Descrição", "name": "DESCRICAO" }
 	];
 
-	zoom.Retorno = function(retorno) {
+	zoom.Retorno = function (retorno) {
 		$("#cpCodTipoAfastamento").val(retorno[0]);
 		$("#cpTipoAfastamentoRM").val(retorno[1]);
-	}  
+	}
 
 	return zoom;
 };
@@ -245,14 +273,14 @@ function buscaMotivoAfastamento() {
 	zoom.DataSet = "ds_rm_motivo_afastamento"; // Dataset de Motivos de Afastamento do RM
 	zoom.Titulo = "Buscar Motivo de Afastamento";
 	zoom.Colunas = [
-		{"title" : "Código", "name" : "CODIGO"},
-		{"title" : "Descrição", "name" : "DESCRICAO"}
+		{ "title": "Código", "name": "CODIGO" },
+		{ "title": "Descrição", "name": "DESCRICAO" }
 	];
 
-	zoom.Retorno = function(retorno) {
+	zoom.Retorno = function (retorno) {
 		$("#cpCodMotivoAfastamento").val(retorno[0]);
 		$("#cpMotivoAfastamento").val(retorno[1]);
-	}  
+	}
 
 	return zoom;
 };
