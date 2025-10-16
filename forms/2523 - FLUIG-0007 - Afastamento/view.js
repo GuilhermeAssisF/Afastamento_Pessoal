@@ -253,7 +253,7 @@ function buscaTipoAfastamento() {
 	zoom.Titulo = "Buscar Tipo de Afastamento";
 	zoom.Colunas = [
 		{ "title": "Código", "name": "CODIGO" },
-		{ "title": "Descrição", "name": "DESCRICAO" }
+		{ "title": "Descrição", "name": "NOME" } // <-- Linha corrigida
 	];
 
 	zoom.Retorno = function (retorno) {
@@ -265,21 +265,27 @@ function buscaTipoAfastamento() {
 };
 
 function buscaMotivoAfastamento() {
-	var zoom = new Zoom();
-	zoom.Id = "IDZoomMotivoAfastamento";
-	zoom.DataSet = "DS_FLUIG_0062"; // Dataset de Motivos de Afastamento do RM
-	zoom.Titulo = "Buscar Motivo de Afastamento";
-	zoom.Colunas = [
-		{ "title": "Código", "name": "CODIGO" },
-		{ "title": "Descrição", "name": "DESCRICAO" }
-	];
+    var zoom = new Zoom();
+    zoom.Id = "IDZoomMotivoAfastamento";
+    zoom.DataSet = "DS_FLUIG_0062";
+    zoom.Titulo = "Buscar Motivo de Afastamento";
 
-	zoom.Retorno = function (retorno) {
-		$("#cpCodMotivoAfastamento").val(retorno[0]);
-		$("#cpMotivoAfastamento").val(retorno[1]);
-	}
+    // Adiciona o campo do formulário que será enviado como filtro para o dataset
+    zoom.FieldsName = ["CodColigada"];
 
-	return zoom;
+    zoom.Colunas = [
+        // Utiliza a coluna CODCLIENTE que existe no seu dataset
+        { "title": "Código", "name": "CODCLIENTE" },
+        { "title": "Descrição", "name": "DESCRICAO" }
+    ];
+
+    zoom.Retorno = function(retorno) {
+        // CORREÇÃO: Usa o índice [0] para o código e [1] para a descrição
+        $("#cpCodMotivoAfastamento").val(retorno[0]);
+        $("#cpMotivoAfastamento").val(retorno[1]);
+    }
+
+    return zoom;
 };
 
 function ZoomBuscaCol() {
