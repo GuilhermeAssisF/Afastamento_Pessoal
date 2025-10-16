@@ -249,7 +249,7 @@ var buscaCentroCusto = function () {
 function buscaTipoAfastamento() {
 	var zoom = new Zoom();
 	zoom.Id = "IDZoomTipoAfastamento";
-	zoom.DataSet = "ds_rm_tipo_afastamento"; // Dataset de Tipos de Afastamento do RM
+	zoom.DataSet = "DS_FLUIG_0050"; // Dataset de Tipos de Afastamento do RM
 	zoom.Titulo = "Buscar Tipo de Afastamento";
 	zoom.Colunas = [
 		{ "title": "Código", "name": "CODIGO" },
@@ -267,7 +267,7 @@ function buscaTipoAfastamento() {
 function buscaMotivoAfastamento() {
 	var zoom = new Zoom();
 	zoom.Id = "IDZoomMotivoAfastamento";
-	zoom.DataSet = "ds_rm_motivo_afastamento"; // Dataset de Motivos de Afastamento do RM
+	zoom.DataSet = "DS_FLUIG_0062"; // Dataset de Motivos de Afastamento do RM
 	zoom.Titulo = "Buscar Motivo de Afastamento";
 	zoom.Colunas = [
 		{ "title": "Código", "name": "CODIGO" },
