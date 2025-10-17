@@ -1438,7 +1438,7 @@
   <bpmn2:BpmnAnnotation id="annotationtask115" name="Processo Finalizado" outgoing="flow116" type="0"/>
   <bpmn2:BpmnAnnotation id="annotationtask117" name="Corre&#xe7;&#xe3;o da Solicita&#xe7;&#xe3;o" outgoing="flow118" type="0"/>
   <bpmn2:BpmnAnnotation id="annotationtask123" name="Processo Cancelado " outgoing="flow124" type="0"/>
-  <bpmn2:BpmnProcess id="FLUIG-0007" name="Afastamento de Pessoal " serverId="SOTER_HOM" version="3" author="" extendedFields="&lt;list/>" cardIndex="2523" formSource="server" category="Departamento Pessoal" volume="Default" expedient="Default" instruction="" mobileReady="true" complementsLevel="1" notifyResponsibleComplements="true" notifyRequisitionerComplements="true"/>
+  <bpmn2:BpmnProcess id="FLUIG-0007" name="Afastamento de Pessoal " serverId="SOTER_HOM" version="6" author="" extendedFields="&lt;list/>" cardIndex="2523" formSource="server" category="Departamento Pessoal" volume="Default" expedient="Default" instruction="" mobileReady="true" complementsLevel="1" notifyResponsibleComplements="true" notifyRequisitionerComplements="true"/>
   <bpmn2:SequenceFlow id="flow45" name="" sourceRef="task41" targetRef="exclusivegateway44" atividadeFluxo="" atividadeRetorno="" extendedFields="&lt;list/>"/>
   <bpmn2:SequenceFlow id="flow46" name="" sourceRef="exclusivegateway44" targetRef="intermediatelink42" atividadeFluxo="" atividadeRetorno="" extendedFields="&lt;list/>"/>
   <bpmn2:SequenceFlow id="flow47" name="" sourceRef="exclusivegateway44" targetRef="endcancel43" atividadeFluxo="" atividadeRetorno="" extendedFields="&lt;list/>"/>

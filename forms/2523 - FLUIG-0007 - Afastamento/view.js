@@ -15,7 +15,6 @@ $(document).ready(function () {
 
 	if (atividade == "1" || atividade == "0" || atividade == "41") {
 
-
 		//limpa solcitação ao mudar o tipo
 		$("#cpTipoAfastamento").change(function () {
 			$(".clearPosCentroCusto").val("");
@@ -108,55 +107,55 @@ $(document).ready(function () {
  * Função para buscar e exibir o histórico de afastamentos do colaborador.
  */
 function carregarHistoricoAfastamento() {
-	var matricula = $("#MatriculaCod").val(); // Pega a matrícula do campo correto
-	var coligada = $("#CodColigada").val(); // CORRIGIDO: Pega a coligada do campo correto
+    var matricula = $("#MatriculaCod").val();
+    var coligada = $("#CodColigada").val();
 
-	// Se não houver matrícula ou coligada, esconde o painel e para a execução.
-	if (!matricula || !coligada) {
-		$("#panelHistoricoAfastamento").hide();
-		return;
-	}
+    // Se não houver matrícula ou coligada, esconde o painel e para a execução.
+    if (!matricula || !coligada) {
+        $("#panelHistoricoAfastamento").hide();
+        return;
+    }
 
-	// --- DADOS FICTÍCIOS (PARA REMOVER QUANDO TIVER O DATASET REAL) ---
-	var dadosFicticios = {
-		"values": [{
-			"EMPRESA": "Empresa Exemplo 1", "FILIAL": "Filial A", "CHAPA": "12345", "NOME": "Fulano de Tal",
-			"TIPO_AFASTAMENTO": "Férias", "DATA_INICIO": "01/01/2023", "DATA_FIM": "30/01/2023",
-			"MOTIVO": "Férias anuais", "OBS": "N/A"
-		}, {
-			"EMPRESA": "Empresa Exemplo 2", "FILIAL": "Filial B", "CHAPA": "12345", "NOME": "Fulano de Tal",
-			"TIPO_AFASTAMENTO": "Licença Médica", "DATA_INICIO": "15/03/2023", "DATA_FIM": "20/03/2023",
-			"MOTIVO": "Atestado Médico", "OBS": "CID Z00.0"
-		}]
-	};
+    // Cria as constraints para o dataset
+    var constraints = [
+        DatasetFactory.createConstraint("CHAPA", matricula, matricula, ConstraintType.MUST),
+        DatasetFactory.createConstraint("CODCOLIGADA", coligada, coligada, ConstraintType.MUST)
+    ];
 
-	var historico = dadosFicticios.values;
+    // Busca os dados do histórico no novo dataset
+    var historicoDataset = DatasetFactory.getDataset("DS_FLUIG_0063", null, constraints, null);
 
-	// Limpa a tabela antes de adicionar novas linhas
-	$("#histAfastamentos tbody tr:not(:first)").remove();
-	$("#histAfastamentos tbody tr").first().find("input").val("");
+    // Limpa a tabela antes de adicionar novas linhas, mantendo a primeira linha como modelo
+    $("#histAfastamentos tbody tr:not(:first)").remove();
+    $("#histAfastamentos tbody tr").first().find("input").val("");
 
-	if (historico && historico.length > 0) {
-		$("#panelHistoricoAfastamento").show();
 
-		for (var i = 0; i < historico.length; i++) {
-			var afastamento = historico[i];
-			var indice = wdkAddChild('histAfastamentos');
+    if (historicoDataset && historicoDataset.values.length > 0) {
+        $("#panelHistoricoAfastamento").show();
+        var historico = historicoDataset.values;
 
-			$("#empresaHist___" + indice).val(afastamento.EMPRESA);
-			$("#filialHist___" + indice).val(afastamento.FILIAL);
-			$("#chapaHist___" + indice).val(afastamento.CHAPA);
-			$("#nomeHist___" + indice).val(afastamento.NOME);
-			$("#tipoAfastamentoHist___" + indice).val(afastamento.TIPO_AFASTAMENTO);
-			$("#dataInicioHist___" + indice).val(afastamento.DATA_INICIO);
-			$("#dataFimHist___" + indice).val(afastamento.DATA_FIM);
-			$("#motivoHist___" + indice).val(afastamento.MOTIVO);
-			$("#obsHist___" + indice).val(afastamento.OBS);
-		}
-		$("#histAfastamentos tbody tr").first().hide(); // Esconde a linha modelo
-	} else {
-		$("#panelHistoricoAfastamento").hide();
-	}
+        for (var i = 0; i < historico.length; i++) {
+            var afastamento = historico[i];
+            // Adiciona uma nova linha na tabela pai-filho
+            var indice = wdkAddChild('histAfastamentos');
+
+            // Preenche os campos da nova linha com os dados do dataset
+            $("#empresaHist___" + indice).val(afastamento.EMPRESA);
+            $("#filialHist___" + indice).val(afastamento.FILIAL);
+            $("#chapaHist___" + indice).val(afastamento.CHAPA);
+            $("#nomeHist___" + indice).val(afastamento.NOME);
+            $("#tipoAfastamentoHist___" + indice).val(afastamento.TIPO_AFASTAMENTO);
+            $("#dataInicioHist___" + indice).val(afastamento.DATA_INICIO);
+            $("#dataFimHist___" + indice).val(afastamento.DATA_FIM);
+            $("#motivoHist___" + indice).val(afastamento.MOTIVO);
+            $("#obsHist___" + indice).val(afastamento.OBS);
+        }
+        // Esconde a primeira linha, que serve apenas como modelo
+        $("#histAfastamentos tbody tr").first().hide();
+    } else {
+        // Se não houver histórico, esconde o painel
+        $("#panelHistoricoAfastamento").hide();
+    }
 }
 
 var criaDatepickers = function () {
@@ -267,7 +266,7 @@ function buscaTipoAfastamento() {
 function buscaMotivoAfastamento() {
     var zoom = new Zoom();
     zoom.Id = "IDZoomMotivoAfastamento";
-    zoom.DataSet = "DS_FLUIG_0062";
+    zoom.DataSet = "DS_FLUIG_0062 ";
     zoom.Titulo = "Buscar Motivo de Afastamento";
 
     // Adiciona o campo do formulário que será enviado como filtro para o dataset
