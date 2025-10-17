@@ -110,25 +110,21 @@ function carregarHistoricoAfastamento() {
     var matricula = $("#MatriculaCod").val();
     var coligada = $("#CodColigada").val();
 
-    // Se não houver matrícula ou coligada, esconde o painel e para a execução.
     if (!matricula || !coligada) {
         $("#panelHistoricoAfastamento").hide();
         return;
     }
 
-    // Cria as constraints para o dataset
     var constraints = [
         DatasetFactory.createConstraint("CHAPA", matricula, matricula, ConstraintType.MUST),
         DatasetFactory.createConstraint("CODCOLIGADA", coligada, coligada, ConstraintType.MUST)
     ];
 
-    // Busca os dados do histórico no novo dataset
     var historicoDataset = DatasetFactory.getDataset("DS_FLUIG_0063", null, constraints, null);
 
-    // Limpa a tabela antes de adicionar novas linhas, mantendo a primeira linha como modelo
+    // Limpa a tabela antes de adicionar novas linhas
     $("#histAfastamentos tbody tr:not(:first)").remove();
     $("#histAfastamentos tbody tr").first().find("input").val("");
-
 
     if (historicoDataset && historicoDataset.values.length > 0) {
         $("#panelHistoricoAfastamento").show();
@@ -136,24 +132,22 @@ function carregarHistoricoAfastamento() {
 
         for (var i = 0; i < historico.length; i++) {
             var afastamento = historico[i];
-            // Adiciona uma nova linha na tabela pai-filho
             var indice = wdkAddChild('histAfastamentos');
 
-            // Preenche os campos da nova linha com os dados do dataset
+            // *** CORREÇÃO FINAL NOS NOMES DAS COLUNAS ***
+            // Usando os nomes exatos definidos no array 'COLUNAS' do seu dataset
             $("#empresaHist___" + indice).val(afastamento.EMPRESA);
             $("#filialHist___" + indice).val(afastamento.FILIAL);
             $("#chapaHist___" + indice).val(afastamento.CHAPA);
             $("#nomeHist___" + indice).val(afastamento.NOME);
-            $("#tipoAfastamentoHist___" + indice).val(afastamento.TIPO_AFASTAMENTO);
-            $("#dataInicioHist___" + indice).val(afastamento.DATA_INICIO);
-            $("#dataFimHist___" + indice).val(afastamento.DATA_FIM);
+            $("#tipoAfastamentoHist___" + indice).val(afastamento.TIPO_AFASTAMENTO); // Corrigido
+            $("#dataInicioHist___" + indice).val(afastamento.DATA_INICIO);         // Corrigido
+            $("#dataFimHist___" + indice).val(afastamento.DATA_FIM);            // Corrigido
             $("#motivoHist___" + indice).val(afastamento.MOTIVO);
             $("#obsHist___" + indice).val(afastamento.OBS);
         }
-        // Esconde a primeira linha, que serve apenas como modelo
         $("#histAfastamentos tbody tr").first().hide();
     } else {
-        // Se não houver histórico, esconde o painel
         $("#panelHistoricoAfastamento").hide();
     }
 }
